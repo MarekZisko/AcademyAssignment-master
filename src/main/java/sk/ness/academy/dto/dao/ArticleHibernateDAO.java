@@ -101,8 +101,8 @@ public class ArticleHibernateDAO implements ArticleDAO {
     if (comment == null) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No comment available");
     }
-    if (comment.getAuthor() == null || comment.getText() == null) {
-      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Incomplete comment format");
+    if (comment.getAuthor() == null || comment.getText() == null || comment.getArticleId() ==null) {
+      throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Incomplete comment format");
     }
     this.sessionFactory.getCurrentSession().saveOrUpdate(comment);
   }
